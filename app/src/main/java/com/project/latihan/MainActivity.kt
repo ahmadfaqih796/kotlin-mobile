@@ -15,6 +15,7 @@ import androidx.compose.ui.unit.dp
 import com.project.latihan.ui.components.bar.AppBar
 import com.project.latihan.ui.components.card.ImageCard
 import com.project.latihan.ui.theme.Material3AppTheme
+import com.project.latihan.ui.screen.auth.LoginScreen
 
 @ExperimentalMaterial3Api
 class MainActivity : ComponentActivity() {

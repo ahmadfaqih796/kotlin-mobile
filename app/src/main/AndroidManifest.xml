@@ -14,17 +14,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LatihanKotlin"
         tools:targetApi="31">
-<!--        <activity-->
-<!--            android:name=".MainActivity"-->
-<!--            android:exported="false" />-->
         <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.LatihanKotlin" >
+
+        </activity>
+        <activity
+            android:name=".view.auth.LoginActivity"
+            android:exported="true"
+            android:label="Login"
+            android:theme="@style/Theme.LatihanKotlin">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
