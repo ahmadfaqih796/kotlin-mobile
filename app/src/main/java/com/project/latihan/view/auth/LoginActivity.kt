@@ -43,7 +43,7 @@ class LoginActivity : ComponentActivity() {
                 // Navigate to the next screen or handle login success
             } catch (e: Exception) {
                 Log.d("haaaaai", "xxxxxxxxx ${e.message}")
-                Toast.makeText(this@LoginActivity, "Error: ${e.message}", Toast.LENGTH_LONG).show()
+                Toast.makeText(this@LoginActivity, e.message, Toast.LENGTH_LONG).show()
             }
         }
     }

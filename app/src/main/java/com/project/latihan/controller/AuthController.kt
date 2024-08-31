@@ -1,15 +1,18 @@
 package com.project.latihan.controller
 
 import android.util.Log
+import com.google.gson.Gson
 import com.project.latihan.model.api.client.BaseClient
 import com.project.latihan.model.api.service.AuthService
 import com.project.latihan.model.datastore.UserPreferencesDataStore
+import com.project.latihan.model.entities.ErrorResponse
 import com.project.latihan.model.entities.UserResponse
 
 class AuthController(
     private val userPreferencesDataStore: UserPreferencesDataStore
 ) {
     private val authClient = BaseClient.retrofit.create(AuthService::class.java)
+    private val gson = Gson()
 
     suspend fun login(email: String, password: String): UserResponse {
         try {
@@ -21,11 +24,13 @@ class AuthController(
                     return it
                 } ?: throw Exception("No response body")
             } else {
-                val errorResponse = response.errorBody()?.string()
-                throw Exception(errorResponse)
+                val errorResponseString = response.errorBody()?.string()
+                val errorResponse = gson.fromJson(errorResponseString, ErrorResponse::class.java)
+                throw Exception(errorResponse.message)
             }
         } catch (e: Exception) {
-            throw Exception("Network error: ${e.message}")
+//            throw Exception("Network error: ${e.message}")
+            throw Exception(e.message)
         }
     }
     val userToken = userPreferencesDataStore.userToken
