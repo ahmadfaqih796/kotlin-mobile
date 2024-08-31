@@ -21,14 +21,14 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            Coba()
+            MainView()
         }
     }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Coba() = Material3AppTheme {
+fun MainView() = Material3AppTheme {
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background
@@ -45,7 +45,7 @@ fun Coba() = Material3AppTheme {
             },
             topBar = {
                 AppBar(
-                    title = "Welcome"
+                    title = "Selamat Datang"
                 )
             }
         ) { values ->
