@@ -39,6 +39,8 @@ fun LoginScreen(
         PasswordFieldV2(
             value = password,
             onValueChange = { password = it },
+            focusRequester = focusRequesters[1],
+            onDone = { requestNextFocus(1) }
         )
         Button(
             onClick = {
