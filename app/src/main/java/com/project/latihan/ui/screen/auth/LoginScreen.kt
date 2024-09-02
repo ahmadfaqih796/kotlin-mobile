@@ -1,15 +1,18 @@
 package com.project.latihan.ui.screen.auth
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
-import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.project.latihan.ui.components.button.CustomButton
 import com.project.latihan.ui.components.form.TextFieldV2
 import com.project.latihan.ui.components.form.PasswordFieldV2
+import com.project.latihan.R
 
 @Composable
 fun LoginScreen(
@@ -34,6 +37,13 @@ fun LoginScreen(
             .padding(16.dp),
         verticalArrangement = Arrangement.Center
     ) {
+        Image(
+            painter = painterResource(id = R.drawable.user),
+            contentDescription = null,
+            modifier = Modifier
+                .size(100.dp)
+                .align(alignment = Alignment.CenterHorizontally)
+        )
         TextFieldV2(
             value = email,
             onValueChange = { email = it },
