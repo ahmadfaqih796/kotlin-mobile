@@ -5,6 +5,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.unit.dp
 import com.project.latihan.ui.components.form.TextFieldV2
 import com.project.latihan.ui.components.form.PasswordFieldV2
@@ -17,9 +18,13 @@ fun LoginScreen(
     var password by remember { mutableStateOf("") }
 
     val focusRequesters = List(2) { FocusRequester() }
+    val keyboardController = LocalSoftwareKeyboardController.current
     fun requestNextFocus(currentIndex: Int) {
         if (currentIndex < focusRequesters.size - 1) {
             focusRequesters[currentIndex + 1].requestFocus()
+        } else {
+            // If it's the last field, close the keyboard
+            keyboardController?.hide()
         }
     }
 
@@ -40,7 +45,7 @@ fun LoginScreen(
             value = password,
             onValueChange = { password = it },
             focusRequester = focusRequesters[1],
-            onDone = { requestNextFocus(1) }
+            onDone = { keyboardController?.hide() }
         )
         Button(
             onClick = {
