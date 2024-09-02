@@ -7,6 +7,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.unit.dp
+import com.project.latihan.ui.components.button.CustomButton
 import com.project.latihan.ui.components.form.TextFieldV2
 import com.project.latihan.ui.components.form.PasswordFieldV2
 
@@ -23,7 +24,6 @@ fun LoginScreen(
         if (currentIndex < focusRequesters.size - 1) {
             focusRequesters[currentIndex + 1].requestFocus()
         } else {
-            // If it's the last field, close the keyboard
             keyboardController?.hide()
         }
     }
@@ -47,13 +47,9 @@ fun LoginScreen(
             focusRequester = focusRequesters[1],
             onDone = { keyboardController?.hide() }
         )
-        Button(
-            onClick = {
-                onLoginClicked(email, password)
-            },
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            Text("Login")
-        }
+        CustomButton(
+            label = "Login",
+            onClick = {onLoginClicked(email, password)
+        })
     }
 }
