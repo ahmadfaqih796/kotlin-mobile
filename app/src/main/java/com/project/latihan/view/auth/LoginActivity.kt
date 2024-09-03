@@ -8,6 +8,7 @@ import androidx.activity.compose.setContent
 import androidx.lifecycle.lifecycleScope
 import com.project.latihan.controller.AuthController
 import com.project.latihan.model.datastore.UserPreferencesDataStore
+import com.project.latihan.ui.layout.SimpleLayout
 import com.project.latihan.ui.screen.auth.LoginScreen
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -25,13 +26,14 @@ class LoginActivity : ComponentActivity() {
         authController = AuthController(userPreferencesDataStore)
 
         setContent {
-            LoginScreen(
-                onLoginClicked = { email, password ->
-                    performLogin(email, password)
-                }
-            )
+            SimpleLayout {
+                LoginScreen(
+                    onLoginClicked = { email, password ->
+                        performLogin(email, password)
+                    }
+                )
+            }
         }
-
     }
 
     private fun performLogin(email: String, password: String) {
@@ -39,7 +41,11 @@ class LoginActivity : ComponentActivity() {
             try {
                 val response = authController.login(email, password)
                 Log.d("haaaaai", "xxxxxxxxx ${response}")
-                Toast.makeText(this@LoginActivity, "Login successful! Welcome ${response.user.fullname}", Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    this@LoginActivity,
+                    "Login successful! Welcome ${response.user.fullname}",
+                    Toast.LENGTH_LONG
+                ).show()
                 // Navigate to the next screen or handle login success
             } catch (e: Exception) {
                 Log.d("haaaaai", "xxxxxxxxx ${e.message}")
