@@ -1,5 +1,6 @@
 package com.project.latihan.ui.components.form
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -10,6 +11,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
@@ -38,7 +40,7 @@ fun TextFieldV2(
         singleLine = singleLine,
         visualTransformation = visualTransformation,
         modifier = if (focusRequester != null) {
-            modifier.fillMaxWidth().focusRequester(focusRequester)
+            modifier.fillMaxWidth().focusRequester(focusRequester).background(Color.Transparent)
         } else {
             modifier.fillMaxWidth()
         },
@@ -54,7 +56,12 @@ fun TextFieldV2(
         placeholder = placeholder,
         leadingIcon = leadingIcon,
         trailingIcon = trailingIcon,
-        colors = colors
+//        colors = colors,
+        colors = TextFieldDefaults.colors(
+            focusedContainerColor = Color.Transparent,
+            unfocusedContainerColor = Color.Transparent
+        ),
+
     )
     Spacer(modifier = Modifier.height(Spacing))
 }
