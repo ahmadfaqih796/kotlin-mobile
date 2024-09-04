@@ -1,6 +1,8 @@
 package com.project.latihan.ui.components.form
 
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.*
@@ -29,7 +31,9 @@ fun PasswordFieldV2(
     var passwordVisible by remember { mutableStateOf(false) }
 
     Box(
-        modifier = modifier.fillMaxWidth()
+        modifier = modifier
+            .fillMaxWidth()
+            .border(3.dp, Color.White, RoundedCornerShape(16.dp))
     ) {
         TextField(
             value = value,
@@ -37,16 +41,21 @@ fun PasswordFieldV2(
             label = { Text(label) },
             visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
             modifier = if (focusRequester != null) {
-                modifier.fillMaxWidth().focusRequester(focusRequester)
+                modifier
+                    .fillMaxWidth()
+                    .focusRequester(focusRequester)
             } else {
                 modifier.fillMaxWidth()
             },
             singleLine = true,
             trailingIcon = {
-                IconButton(onClick = { passwordVisible = !passwordVisible }) {
+                IconButton(
+                    onClick = { passwordVisible = !passwordVisible }
+                ) {
                     Icon(
                         imageVector = if (passwordVisible) Icons.Filled.Visibility else Icons.Filled.VisibilityOff,
-                        contentDescription = if (passwordVisible) "Hide password" else "Show password"
+                        contentDescription = if (passwordVisible) "Hide password" else "Show password",
+                        tint = Color.White
                     )
                 }
             },
@@ -60,7 +69,16 @@ fun PasswordFieldV2(
             ),
             colors = TextFieldDefaults.colors(
                 focusedContainerColor = Color.Transparent,
-                unfocusedContainerColor = Color.Transparent
+                unfocusedContainerColor = Color.Transparent,
+                focusedLabelColor = Color.White,
+                unfocusedLabelColor = Color.White,
+                focusedTextColor = Color.White,
+                unfocusedTextColor = Color.White,
+                // underline color
+                focusedIndicatorColor = Color.Transparent,
+                unfocusedIndicatorColor = Color.Transparent,
+                // color kedap kedip cursor
+                cursorColor = Color.White
             ),
         )
     }

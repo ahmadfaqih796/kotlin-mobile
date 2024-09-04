@@ -10,6 +10,7 @@ import com.project.latihan.controller.AuthController
 import com.project.latihan.model.datastore.UserPreferencesDataStore
 import com.project.latihan.ui.layout.SimpleLayout
 import com.project.latihan.ui.screen.auth.LoginScreen
+import com.project.latihan.ui.screen.auth.LoginScreenV2
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -27,7 +28,12 @@ class LoginActivity : ComponentActivity() {
 
         setContent {
             SimpleLayout {
-                LoginScreen(
+//                LoginScreen(
+//                    onLoginClicked = { email, password ->
+//                        performLogin(email, password)
+//                    }
+//                )
+                LoginScreenV2(
                     onLoginClicked = { email, password ->
                         performLogin(email, password)
                     }

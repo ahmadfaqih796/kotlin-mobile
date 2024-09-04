@@ -1,9 +1,12 @@
 package com.project.latihan.ui.components.form
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.*
@@ -33,35 +36,54 @@ fun TextFieldV2(
     focusRequester: FocusRequester? = null,
     onDone: (() -> Unit)? = null,
 ) {
-    TextField(
-        value = value,
-        onValueChange = onValueChange,
-        label = { Text(label) },
-        singleLine = singleLine,
-        visualTransformation = visualTransformation,
-        modifier = if (focusRequester != null) {
-            modifier.fillMaxWidth().focusRequester(focusRequester).background(Color.Transparent)
-        } else {
-            modifier.fillMaxWidth()
-        },
-        keyboardOptions = KeyboardOptions.Default.copy(
-            imeAction = ImeAction.Done
-        ),
-        keyboardActions = KeyboardActions(
-            onDone = {
-                onDone?.invoke()
-            }
-        ),
-        isError = isError,
-        placeholder = placeholder,
-        leadingIcon = leadingIcon,
-        trailingIcon = trailingIcon,
-//        colors = colors,
-        colors = TextFieldDefaults.colors(
-            focusedContainerColor = Color.Transparent,
-            unfocusedContainerColor = Color.Transparent
-        ),
+    Box(
+        modifier = modifier
+            .fillMaxWidth()
+            .border(3.dp, Color.White, RoundedCornerShape(16.dp))
+    ) {
+        TextField(
+            value = value,
+            onValueChange = onValueChange,
+            label = { Text(label) },
+            singleLine = singleLine,
+            visualTransformation = visualTransformation,
+            modifier = if (focusRequester != null) {
+                modifier
+                    .fillMaxWidth()
+                    .focusRequester(focusRequester)
+            } else {
+                modifier
+                    .fillMaxWidth()
 
-    )
+            },
+            keyboardOptions = KeyboardOptions.Default.copy(
+                imeAction = ImeAction.Done
+            ),
+            keyboardActions = KeyboardActions(
+                onDone = {
+                    onDone?.invoke()
+                }
+            ),
+            isError = isError,
+            placeholder = placeholder,
+            leadingIcon = leadingIcon,
+            trailingIcon = trailingIcon,
+            // colors = colors,
+            colors = TextFieldDefaults.colors(
+                focusedContainerColor = Color.Transparent,
+                unfocusedContainerColor = Color.Transparent,
+                focusedLabelColor = Color.White,
+                unfocusedLabelColor = Color.White,
+                focusedTextColor = Color.White,
+                unfocusedTextColor = Color.White,
+                // underline color
+                focusedIndicatorColor = Color.Transparent,
+                unfocusedIndicatorColor = Color.Transparent,
+                // color kedap kedip cursor
+                cursorColor = Color.White
+            ),
+        )
+    }
+
     Spacer(modifier = Modifier.height(Spacing))
 }

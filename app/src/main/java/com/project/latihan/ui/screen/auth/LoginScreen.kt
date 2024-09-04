@@ -32,7 +32,6 @@ fun LoginScreen(
 ) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
-    val focusManager = LocalFocusManager.current
 
     val focusRequesters = List(2) { FocusRequester() }
     val keyboardController = LocalSoftwareKeyboardController.current
