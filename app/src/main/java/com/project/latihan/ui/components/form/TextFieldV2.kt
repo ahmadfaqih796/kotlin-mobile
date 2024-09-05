@@ -29,6 +29,7 @@ fun TextFieldV2(
     visualTransformation: VisualTransformation = VisualTransformation.None,
     modifier: Modifier = Modifier,
     isError: Boolean = false,
+    errorMessage: String? = null,
     placeholder: @Composable (() -> Unit)? = null,
     leadingIcon: @Composable (() -> Unit)? = null,
     trailingIcon: @Composable (() -> Unit)? = null,
@@ -80,8 +81,22 @@ fun TextFieldV2(
                 focusedIndicatorColor = Color.Transparent,
                 unfocusedIndicatorColor = Color.Transparent,
                 // color kedap kedip cursor
-                cursorColor = Color.White
+                cursorColor = Color.White,
+                // error color
+                errorContainerColor = Color.Transparent,
+                errorIndicatorColor = Color.Transparent,
+                errorLabelColor = Color.White,
+                errorCursorColor = Color.White,
+                errorTextColor = Color.White
             ),
+        )
+    }
+    if (errorMessage != null) {
+        Text(
+            text = errorMessage,
+            color = Color.White,
+            style = MaterialTheme.typography.bodySmall,
+//            modifier = Modifier.padding(start = 16.dp, top = 4.dp)
         )
     }
 

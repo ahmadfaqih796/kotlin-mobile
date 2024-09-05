@@ -39,7 +39,6 @@ data class User(
     val job_level_id: String?,
     val company_id: String?,
     val division_id: String?,
-    val job_departement_id: String?,
     val leave_amount: String?,
     val is_mobile: Boolean?,
     val is_overtime: Boolean?,
@@ -54,17 +53,8 @@ data class User(
     val hierarchy_level: Int?,
     val job_position_id: String?,
     val project_id: String?,
-    val job_level: String?,
-    val job_departement: String?,
-    val shifting: String?,
-    val location_point: String?,
-    val employee_type: String?,
-    val division: String?,
-    val job_position: String?,
-    val user_schedule: String?,
-    val upliner_data: String?,
-    val upliner2_data: String?,
-    val upliner3_data: String?
+    val job_level: JobLevel,
+    val job_departement_id: String?,
 )
 
 data class Company(
@@ -72,4 +62,10 @@ data class Company(
     val name: String,
     val industry: String,
     val company_code: String
+)
+
+data class JobLevel(
+    val id: String,
+    val level: Int,
+    val name: String
 )

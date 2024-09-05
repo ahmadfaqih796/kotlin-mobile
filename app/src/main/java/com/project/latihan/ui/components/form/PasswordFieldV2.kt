@@ -27,6 +27,8 @@ fun PasswordFieldV2(
     modifier: Modifier = Modifier,
     focusRequester: FocusRequester? = null,
     onDone: (() -> Unit)? = null,
+    isError: Boolean = false,
+    errorMessage: String? = null
 ) {
     var passwordVisible by remember { mutableStateOf(false) }
 
@@ -78,8 +80,23 @@ fun PasswordFieldV2(
                 focusedIndicatorColor = Color.Transparent,
                 unfocusedIndicatorColor = Color.Transparent,
                 // color kedap kedip cursor
-                cursorColor = Color.White
+                cursorColor = Color.White,
+                // error color
+                errorContainerColor = Color.Transparent,
+                errorIndicatorColor = Color.Transparent,
+                errorLabelColor = Color.White,
+                errorCursorColor = Color.White,
+                errorTextColor = Color.White
             ),
+            isError = isError
+        )
+    }
+    if (errorMessage != null) {
+        Text(
+            text = errorMessage,
+            color = Color.White,
+            style = MaterialTheme.typography.bodySmall,
+//            modifier = Modifier.padding(start = 16.dp, top = 4.dp)
         )
     }
     Spacer(modifier = Modifier.height(16.dp))

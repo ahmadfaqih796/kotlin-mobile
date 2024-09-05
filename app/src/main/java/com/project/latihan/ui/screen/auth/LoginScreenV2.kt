@@ -32,6 +32,10 @@ fun LoginScreenV2(
 
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    var isSubmit by remember { mutableStateOf(false) }
+
+    var emailError by remember { mutableStateOf<String?>(null) }
+    var passwordError by remember { mutableStateOf<String?>(null) }
 
     val focusRequesters = List(2) { FocusRequester() }
     val keyboardController = LocalSoftwareKeyboardController.current
@@ -41,6 +45,23 @@ fun LoginScreenV2(
         } else {
             keyboardController?.hide()
         }
+    }
+
+    fun validateInputs(): Boolean {
+        var isValid = true
+        if (isSubmit) {
+            emailError = when {
+                email.isBlank() -> "Email cannot be empty"
+                !email.matches(Regex("^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$")) -> "Invalid email format"
+                else -> null
+            }
+//            emailError = if (email.isBlank()) "Email cannot be empty" else null
+            passwordError = if (password.isBlank()) "Password cannot be empty" else null
+            if (emailError != null || passwordError != null) {
+                isValid = false
+            }
+        }
+        return isValid
     }
 
     Box(
@@ -103,23 +124,47 @@ fun LoginScreenV2(
             ) {
                 TextFieldV2(
                     value = email,
-                    onValueChange = { email = it },
+//                    onValueChange = { email = it },
+                    onValueChange = { newValue ->
+                        email = newValue
+                        if (isSubmit) {
+//                            emailError = if (newValue.isBlank()) "Email cannot be empty" else null
+                            emailError = when {
+                                newValue.isBlank() -> "Email cannot be empty"
+                                !newValue.matches(Regex("^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$")) -> "Invalid email format"
+                                else -> null
+                            }
+                        }
+                    },
                     label = "Email",
                     focusRequester = focusRequesters[0],
-                    onDone = { requestNextFocus(0) }
+                    onDone = { requestNextFocus(0) },
+                    isError = emailError != null,
+                    errorMessage = emailError
                 )
                 PasswordFieldV2(
                     value = password,
-                    onValueChange = { password = it },
+                    onValueChange = { newValue ->
+                        password = newValue
+                        if (isSubmit) {
+                            passwordError =
+                                if (newValue.isBlank()) "Password cannot be empty" else null
+                        }
+                    },
                     focusRequester = focusRequesters[1],
-                    onDone = { keyboardController?.hide() }
+                    onDone = { keyboardController?.hide() },
+                    isError = passwordError != null,
+                    errorMessage = passwordError
                 )
                 CustomButton(
                     label = "Login",
                     backgroundColor = Color.White,
                     contentColor = Color(0xFFB04A4A),
                     onClick = {
-                        onLoginClicked(email, password)
+                        isSubmit = true
+                        if (validateInputs()) {
+                            onLoginClicked(email, password)
+                        }
                     })
             }
             Column(
