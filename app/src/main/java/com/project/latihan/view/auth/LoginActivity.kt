@@ -5,7 +5,10 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.lifecycle.lifecycleScope
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import com.project.latihan.controller.AuthController
 import com.project.latihan.model.datastore.UserPreferencesDataStore
 import com.project.latihan.ui.layout.SimpleLayout
@@ -27,6 +30,7 @@ class LoginActivity : ComponentActivity() {
         authController = AuthController(userPreferencesDataStore)
 
         setContent {
+            var isLoading by remember { mutableStateOf(false) }
             SimpleLayout {
 //                LoginScreen(
 //                    onLoginClicked = { email, password ->
@@ -34,15 +38,23 @@ class LoginActivity : ComponentActivity() {
 //                    }
 //                )
                 LoginScreenV2(
+                    isLoading = isLoading,
                     onLoginClicked = { email, password ->
-                        performLogin(email, password)
+                        performLogin(email, password) { loading ->
+                            isLoading = loading
+                        }
                     }
                 )
             }
         }
     }
 
-    private fun performLogin(email: String, password: String) {
+    private fun performLogin(
+        email: String,
+        password: String,
+        onLoadingChange: (Boolean) -> Unit
+    ) {
+        onLoadingChange(true)
         CoroutineScope(Dispatchers.Main).launch {
             try {
                 val response = authController.login(email, password)
@@ -56,6 +68,8 @@ class LoginActivity : ComponentActivity() {
             } catch (e: Exception) {
                 Log.d("haaaaai", "xxxxxxxxx ${e.message}")
                 Toast.makeText(this@LoginActivity, e.message, Toast.LENGTH_LONG).show()
+            } finally {
+                onLoadingChange(false)
             }
         }
     }

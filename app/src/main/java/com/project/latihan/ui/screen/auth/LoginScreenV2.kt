@@ -2,7 +2,9 @@ package com.project.latihan.ui.screen.auth
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -24,9 +26,12 @@ import com.project.latihan.R
 import com.project.latihan.ui.components.button.CustomButton
 import com.project.latihan.ui.components.form.PasswordFieldV2
 import com.project.latihan.ui.components.form.TextFieldV2
+import com.project.latihan.ui.components.loading.BaseLoading
+import com.project.latihan.ui.components.loading.FadeLoading
 
 @Composable
 fun LoginScreenV2(
+    isLoading: Boolean,
     onLoginClicked: (email: String, password: String) -> Unit
 ) {
 
@@ -63,6 +68,7 @@ fun LoginScreenV2(
         }
         return isValid
     }
+
 
     Box(
         modifier = Modifier
@@ -183,5 +189,5 @@ fun LoginScreenV2(
             }
         }
     }
-
+    FadeLoading(isLoading)
 }
