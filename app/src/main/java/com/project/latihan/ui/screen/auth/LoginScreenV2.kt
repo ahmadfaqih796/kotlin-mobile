@@ -2,9 +2,7 @@ package com.project.latihan.ui.screen.auth
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -26,7 +24,6 @@ import com.project.latihan.R
 import com.project.latihan.ui.components.button.CustomButton
 import com.project.latihan.ui.components.form.PasswordFieldV2
 import com.project.latihan.ui.components.form.TextFieldV2
-import com.project.latihan.ui.components.loading.BaseLoading
 import com.project.latihan.ui.components.loading.FadeLoading
 
 @Composable
@@ -104,11 +101,11 @@ fun LoginScreenV2(
             )
 //            Spacer(modifier = Modifier.height(10.dp))
             Text(
-                text = "Peduli Lindungi",
+                text = "Hadir Location",
                 modifier = Modifier
                     .fillMaxWidth(),
                 textAlign = TextAlign.Center,
-                fontSize = 20.sp,
+                fontSize = 30.sp,
                 color = Color.White,
                 fontFamily = FontFamily.Monospace
             )
