@@ -15,16 +15,16 @@
         android:theme="@style/Theme.LatihanKotlin"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".view.layer.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.LatihanKotlin" >
+            android:theme="@style/Theme.LatihanKotlin">
 
         </activity>
         <activity
             android:name=".view.auth.LoginActivity"
             android:exported="true"
-            android:label="Login"
+            android:label="Tracking"
             android:theme="@style/Theme.LatihanKotlin">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
