@@ -19,6 +19,7 @@ class AuthController(
             val response = authClient.login(email, password, "local")
             if (response.isSuccessful) {
                 val userResponse = response.body()
+                Log.d("ssssssssss", response.body().toString())
                 userResponse?.let {
                     userPreferencesDataStore.saveUserToken(it.accessToken)
                     return it
@@ -33,5 +34,6 @@ class AuthController(
             throw Exception(e.message)
         }
     }
+
     val userToken = userPreferencesDataStore.userToken
 }

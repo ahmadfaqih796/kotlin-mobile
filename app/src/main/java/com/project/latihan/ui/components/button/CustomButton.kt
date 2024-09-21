@@ -24,15 +24,18 @@ fun CustomButton(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     colors: ButtonColors = ButtonDefaults.buttonColors(),
-    contentColor: Color = Color.White, // Parameter to customize text color
-    backgroundColor: Color = Color.Red, // Parameter to customize background color
+    contentColor: Color = Color.White,
+    backgroundColor: Color = Color.Red,
     icon: @Composable (() -> Unit)? = null
 ) {
     Button(
         onClick = onClick,
         modifier = modifier
-            .fillMaxWidth()
-            .padding(0.dp, 20.dp),
+            .then(
+                Modifier
+                    .fillMaxWidth()
+                    .padding(0.dp, 20.dp)
+            ),
         enabled = enabled,
         colors = ButtonDefaults.buttonColors(
             contentColor = contentColor,
@@ -41,11 +44,13 @@ fun CustomButton(
     ) {
         if (icon != null) {
             Row(
+                modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Center
             ) {
                 icon()
-                Spacer(modifier = Modifier.width(8.dp))
+
+                Text(text = label)
             }
         } else {
             Text(text = label)
