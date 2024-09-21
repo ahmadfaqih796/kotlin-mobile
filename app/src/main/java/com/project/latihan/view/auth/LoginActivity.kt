@@ -53,7 +53,8 @@ class LoginActivity : ComponentActivity() {
                             LoginScreenV2(
                                 isLoading = isLoading,
                                 onLoginClicked = { email, password ->
-                                    performLogin(email, password) { loading ->
+                                    performLogin(email, password)
+                                    { loading ->
                                         isLoading = loading
                                     }
                                 }
