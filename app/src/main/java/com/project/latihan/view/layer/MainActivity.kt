@@ -27,7 +27,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             SimpleLayout {
                 MainScreen(
-                    onLogoutClicked = { performLogout() }
+                    onLogoutClicked = { performLogout() },
+                    context = this@MainActivity
                 )
             }
         }

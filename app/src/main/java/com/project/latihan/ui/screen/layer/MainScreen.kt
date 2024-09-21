@@ -1,5 +1,6 @@
 package com.project.latihan.ui.screen.layer
 
+import android.content.Context
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -19,7 +20,8 @@ import com.project.latihan.ui.components.button.CustomButton
 
 @Composable
 public fun MainScreen(
-    onLogoutClicked: () -> Unit
+    onLogoutClicked: () -> Unit,
+    context: Context
 ) {
     Column(
         modifier = Modifier
@@ -62,7 +64,10 @@ public fun MainScreen(
                 .background(Color(0xFFB04A4A)),
             verticalArrangement = Arrangement.SpaceBetween
         ) {
-
+// nampilin mapnya ?
+            MapScreen(
+                context = context
+            )
         }
     }
 }
